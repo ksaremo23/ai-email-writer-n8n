@@ -21,6 +21,8 @@ export default function Home() {
     professional: "",
   });
 
+  // n8n webhook URL - receives POST requests with form data and returns generated emails
+  // See N8N_WORKFLOW.md for workflow setup details
   const WEBHOOK_URL = "https://ksaremo23.app.n8n.cloud/webhook-test/ai-email-writer-n8n";
 
   const handleGenerate = async () => {
@@ -33,6 +35,8 @@ export default function Home() {
     setResults({ short: "", conversational: "", professional: "" });
 
     try {
+      // Send POST request to n8n webhook with form data
+      // Expected response: { short: string, conversational: string, professional: string }
       const response = await axios.post(WEBHOOK_URL, {
         emailType,
         context,
